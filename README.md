@@ -42,3 +42,24 @@ Used in prep_for_TERAD.sh
 sed -n '1~4s/^@/>/p;2~4p' ${ind}_1.1.fq > ${ind}_1.1.fa
 ```
 
+### Download genomes from NCBI
+Find NCBI genome page, vist FTP, copy link address of .fasta
+```
+wget copliedlinkaddress
+```
+
+## AWK
+### Work in blocks between '//' features to print data
+Used in Marius_separate_loci_into fasta  
+```
+awk 'BEGIN{l=1}$1=="//"{l++} $1!="//"{i=$1; s=$2; print ">Locus"l"\n"s >> i".fasta"; print l >> i".loci.txt"}' ct87_13.loci
+
+#awk 
+# BEGIN{l=1}$1=="//"{l++} <--- must set up the block design \
+	# L=1 , column 1 == "//", generate series? \
+	# starting number for L is 1
+# If $1 does not equal "//" then i=$1 and s=$2, print " >Locus L(variable made at start), new line, s (variable)" \
+	#put into i(variable).fasta 
+# Also print L into file i.loci.txt
+# use file ct87_13.loci
+```
