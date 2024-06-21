@@ -47,6 +47,11 @@ Find NCBI genome page, vist FTP, copy link address of .fasta
 ```
 wget copliedlinkaddress
 ```
+### Prepare input files for slurm task array
+Used in final_prep.sh and prep_for_TERAD.sh
+```
+ls *_nodash.fa | cat -n | while read n f; do mv -n "$f" "${n}_${f}"; done
+```
 
 ## AWK
 ### Work in blocks between '//' features to print data
@@ -63,3 +68,20 @@ awk 'BEGIN{l=1}$1=="//"{l++} $1!="//"{i=$1; s=$2; print ">Locus"l"\n"s >> i".fas
 # Also print L into file i.loci.txt
 # use file ct87_13.loci
 ```
+
+### Add sequential numbers to fasta headers
+Used in separate_loci_into_fasta.sh
+```
+awk '/^>/{$0=$0"_"(++i)}1' file.fa > file2.fa
+```
+
+### Remove '-' from multi individual alignment
+Used in separate_loci_into_fasta.sh
+```
+head file.tab
+$ >locus_1	ATGATAATATATAT---GGGGGGCCCCCCCCCC
+
+awk -v OFS='\t' '{gsub("-", "", $2); print}' file.tab | head
+$ >locus_1	ATGATAATATATATGGGGGGCCCCCCCCCC
+```
+
