@@ -51,6 +51,7 @@ wget copliedlinkaddress
 Used in final_prep.sh and prep_for_TERAD.sh
 ```
 ls *_nodash.fa | cat -n | while read n f; do mv -n "$f" "${n}_${f}"; done
+# list fasta files, read and add line numbers making two columns, n=line number & f=file name, while read variables n and f, do, rename $f to $n.$f using move (-n stops files being overwritten), done
 ```
 
 ## AWK
