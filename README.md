@@ -1,6 +1,6 @@
 # Data-Manipulation-scripts
 Collection of scripts for data manipulation - awk etc.   
-
+21/06/24 GONE THROUGH SCRIPTS UP TO AND INCLUDING TEST2/BLAST - DEFINITELY INCLUDE MANUAL CPG CALCS AND MANUAL DAREN CALCULATIONS
    
 ### Randomly select 4 individuals  
 Used in rainbow_taskarray.sh to randomly select four individuals per trench, and assemble these with rainbow  
