@@ -117,4 +117,8 @@ $ >locus_1	ATGATAATATATAT---GGGGGGCCCCCCCCCC
 awk -v OFS='\t' '{gsub("-", "", $2); print}' file.tab | head
 $ >locus_1	ATGATAATATATATGGGGGGCCCCCCCCCC
 ```
+### Do maths:
+#### Percent of sequence from TE
+Used in Daren_8B_mancalc.sh and Daren_8C_mancalc2.sh
+#### CpG observed/expected
 
