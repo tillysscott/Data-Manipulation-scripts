@@ -8,7 +8,13 @@ Used in rainbow_taskarray.sh to randomly select four individuals per trench, and
 ls $SLURM_ARRAY_TASK_ID/*_1.1.fq.gz | shuf -n 4 | paste -s -d '~' | sed 's/~/ -1 /g' > trench$SLURM_ARRAY_TASK_ID.forward.txt
 # list forward reads in folder 1, shuffle and randomly choose 4, paste in serially (onto one line ; -s) and use '~' as delimiter, using sed replace '~' with -1 globally, generating the list format needed for job submission
 ```
-
+### Counting
+Options  
+```
+grep -c ">" fasta.fa # grep (grab) and count lines that include ">" character
+wc -l # word count lines, also counts characters, words, and other. see wc --help
+sort | uniq -c # sort list (-k to specify column (-k 2)), count unique instances
+```
 ### Replace character strings
 Used in rainbow_taskarray.sh to generate reverse read input list from forward read list  
 Using sed:
@@ -70,6 +76,14 @@ cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 
 ### separate TE library into known and unknown libraries
 Used in separate_TE_lib.sh
 ```
+conda activate seqkit
+export species="amphipod"
+
+cat ${species}.fa | seqkit fx2tab | grep -v "Unknown" | seqkit tab2fx > ${species}.known.fa
+take fasta, convert to tab separated format, grab (grep) lines that don't include the term "unknown", convert from tab to fasta format, output to .known.fa
+
+cat ${species}.fa | seqkit fx2tab | grep "Unknown" | seqkit tab2fx > ${species}.unknown.fa
+take fasta, convert to tab separated format, grab (grep) lines that include the term "unknown", convert from tab to fasta format, output to .unknown.fa
 ```
 
 ## AWK
