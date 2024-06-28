@@ -53,6 +53,24 @@ Used in final_prep.sh and prep_for_TERAD.sh
 ls *_nodash.fa | cat -n | while read n f; do mv -n "$f" "${n}_${f}"; done
 # list fasta files, read and add line numbers making two columns, n=line number & f=file name, while read variables n and f, do, rename $f to $n.$f using move (-n stops files being overwritten), done
 ```
+### Add species code to fasta header
+```
+conda activate seqkit
+
+head Parhyale_hawaiensis-families.fa
+$ >ltr-1_family-1#LTR/Unknown [ Type=LTR, Final Multiple Alignment Size = 2 ]
+$ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
+
+# add species code to header: genSpeVer_
+cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
+## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
+
+```
+## Grep
+### separate TE library into known and unknown libraries
+Used in separate_TE_lib.sh
+```
+```
 
 ## AWK
 ### Work in blocks between '//' features to print data
