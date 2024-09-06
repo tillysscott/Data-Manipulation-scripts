@@ -70,7 +70,7 @@ $ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
 # add species code to header: genSpeVer_
 cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
 ## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
-
+```
 ### Moving files
 ```
 # Compress the directory/data
