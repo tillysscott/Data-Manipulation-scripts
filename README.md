@@ -71,7 +71,18 @@ $ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
 cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
 ## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
 
+### Moving files
 ```
+# Compress the directory/data
+tar -cvzf data.tar.gz data
+# Create md5sum string
+md5sum data.tar.gz
+# After transfer check md5string
+md5sum data.tar.gz
+# expand the file
+tar -xvzf data.tar.gz
+```
+
 ## Grep
 ### separate TE library into known and unknown libraries
 Used in separate_TE_lib.sh
