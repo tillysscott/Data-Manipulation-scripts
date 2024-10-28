@@ -133,3 +133,11 @@ $ >locus_1	ATGATAATATATATGGGGGGCCCCCCCCCC
 Used in Daren_8B_mancalc.sh and Daren_8C_mancalc2.sh
 #### CpG observed/expected
 
+## Random bits of useful code I didn't know when I started
+```
+seff jobid # see how much memory etc. a slurm job used
+scancel jobid #cancel slurm job
+squeue --m # see my running slurm jobs
+ctrl-C # cancels most things
+```
+
