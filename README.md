@@ -96,6 +96,11 @@ take fasta, convert to tab separated format, grab (grep) lines that don't includ
 cat ${species}.fa | seqkit fx2tab | grep "Unknown" | seqkit tab2fx > ${species}.unknown.fa
 take fasta, convert to tab separated format, grab (grep) lines that include the term "unknown", convert from tab to fasta format, output to .unknown.fa
 ```
+### starts or ends of lines:
+```
+grep "^>" file.fasta # grep lines that start with ">"
+ls | grep "\.gz$" # grep lines that end with ".gz", the "." must be escaped
+```
 
 ## AWK
 ### Work in blocks between '//' features to print data
