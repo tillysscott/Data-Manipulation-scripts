@@ -1,7 +1,19 @@
 # Data-Manipulation-scripts
 Collection of scripts for data manipulation - awk etc.   
 21/06/24 GONE THROUGH SCRIPTS UP TO AND INCLUDING TEST2/DarenAnalysis/00_repclassifier_cdhitLib - DEFINITELY INCLUDE MANUAL CPG CALCS AND MANUAL DAREN CALCULATIONS
-   
+
+### Moving files
+```
+# Compress the directory/data
+tar -cvzf data.tar.gz data
+# Create md5sum string
+md5sum data.tar.gz
+# After transfer check md5string
+md5sum data.tar.gz
+# expand the file
+tar -xvzf data.tar.gz
+```
+
 ### Randomly select 4 individuals  
 Used in rainbow_taskarray.sh to randomly select four individuals per trench, and assemble these with rainbow  
 ```
@@ -70,17 +82,6 @@ $ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
 # add species code to header: genSpeVer_
 cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
 ## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
-```
-### Moving files
-```
-# Compress the directory/data
-tar -cvzf data.tar.gz data
-# Create md5sum string
-md5sum data.tar.gz
-# After transfer check md5string
-md5sum data.tar.gz
-# expand the file
-tar -xvzf data.tar.gz
 ```
 
 ## Grep
