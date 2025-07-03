@@ -198,8 +198,9 @@ srun --pty bash
 - help page: [here](https://code.visualstudio.com/docs/languages/markdown)  
     - Use pop up bubble choose plain text or mark down link
     - put 4 spaces before dash for more indent  
-
+- To inset and image write exclamition point, square brackets containing image description, normal brackets containing the path to the image. All with no spaces  
 ![image desc](./Markdown_images/Screenshot%202025-06-03%20102209.png)  
+- To insert a link: square brackets with link description, normal brackets with link. All with no spaces  
 [text description of link](#how-to-transfer-data-from-maxwell-directly-to-the-team-drive)
 - ctrl + shift + v for md preview
 - drag tab to right to open preview side-by-side window
