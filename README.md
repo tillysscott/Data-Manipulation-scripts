@@ -138,7 +138,7 @@ md5sum data.tar.gz
 md5sum data.tar.gz
 # expand the file
 tar -xvzf data.tar.gz
-
+```
 #### How to transfer data from Maxwell directly to the team drive  
 - All outputs have been tar zipped. Read below for description of these outputs  
 - First log into Maxwell (or Macleod) as normal  
@@ -147,7 +147,7 @@ tar -xvzf data.tar.gz
 ```
 smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\CGEBM\Bioinformatics Unit\CGEBM Projects Bfx\<any project folder> 
 ```
-Example: ``` smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\CGEBM\Bioinformatics Unit\CGEBM Projects Bfx\CGEBMP424A Stefan Marika Targetted RNAseq Nanopore Xenopus tropicalis\Ongoing\' ```
+Example: `smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\CGEBM\Bioinformatics Unit\CGEBM Projects Bfx\CGEBMP424A Stefan Marika Targetted RNAseq Nanopore Xenopus tropicalis\Ongoing\' `
 - Note: It doesn't have to be just CLSM\CGEBM etc, it can be any folder in the drive that YOU HAVE ACCESS TO
 - Enter your password - this would be your password for your university email
 - Once entered, you will now be in the team drive
