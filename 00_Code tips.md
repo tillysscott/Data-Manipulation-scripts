@@ -69,7 +69,7 @@ prompt off
 
 ### Using HPC within RStudio
 1. Open R Studio
-2. Go to the terminal tab and enter `ssh s12ms2@maxlogin1.abdn.ac.uk`
+2. Go to the terminal tab and enter `ssh username@maxlogin1.abdn.ac.uk`
 3. Enter normal password
 4. Move to directory with bash commands
 5. Create an interactive job `salloc -c 1 --mem=4G`
@@ -91,3 +91,4 @@ NB: won't show images in the plots window, but can trouble shoot and use a scrip
 - ctrl + shift + v for md preview
 - drag tab to right to open preview side-by-side window
 - right click on window, open in brower, Print, then save as pdf to export this document
+
