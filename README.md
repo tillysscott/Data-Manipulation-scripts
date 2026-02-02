@@ -72,6 +72,16 @@ $ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
 cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
 ## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
 ```
+### if else and pattern matching
+```
+if [[ "$GTDBTK_DATA_PATH" =~ "/uoa/scratch/shared/Soil_Microbiology_Group/Training/Metagenomics/databases/GTDB-Tk_r220" ]] && [[ "$GTDB_DATA_PATH" =~ "/uoa/scratch/shared/Soil_Microbiology_Group/Training/Metagenomics/databases/GTDB-Tk_r220" ]]; then
+  echo "Paths to GTDB match, METABOLIC is ready to use"
+else
+  exit
+fi
+```
+This tests if the strings GTDBTK_DATA_PATH and GTDB_DATA_PATH (`&&`) exactly match the regrex pattern (path to GTDB-Tk_r220 in this case). More info on pattern matching is here: https://www.baeldung.com/linux/regex-inside-if-clause
+
 
 ## Grep
 ### separate TE library into known and unknown libraries
