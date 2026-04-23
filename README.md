@@ -138,6 +138,17 @@ $ >locus_1	ATGATAATATATATGGGGGGCCCCCCCCCC
 Used in Daren_8B_mancalc.sh and Daren_8C_mancalc2.sh
 #### CpG observed/expected
 
+### Add an extra column to a table with a sample tag
+Run a for loop that runs through sample numbers, use to print the table with the sample numbers in the first column  
+`-F` sets the field separator, in this case, tab.  
+`-v` sets the variable, in this case, `$num`, which was inherited from the for loop.  
+`$0` prints the whole table.  
+```
+for num in {325588..325617}
+do
+	grep "transposase" Prokka/${num}E_prokka1.14.6/${num}E_*.gff | awk -F '\t' -v NUM=$num '{print NUM, $0}' >> Prokka/transposase_grep.tsv
+done
+```
 ## Moving files
 ```
 # Compress the directory/data
