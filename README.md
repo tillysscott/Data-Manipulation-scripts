@@ -43,6 +43,16 @@ $ change.this.path
 sed 's/\//\t/g' test.txt # '\t' is read a tab
 $ change  this    path
 ```
+### Cut a string at the first instance of an underscore
+`cut -d_ -f1`  
+For example:  
+```
+sample=$(basename "$(dirname "$faa")" | cut -d_ -f1)
+# make a variable called "sample"
+					# keep the directory path to the faa, whilst removing the faa filename from the end of the path
+		# keep the last/highest directory name
+										# cut using _ as the separator and keep the first field
+```
 ### Convert fastq to fasta
 Used in prep_for_TERAD.sh  
 ```
@@ -72,6 +82,8 @@ $ TGTGATAGCCGGTCTTTCCTTATGCCTGTGTATGTATACGATAGTAACTT
 cat Parhyale_hawaiensis-families.fa | seqkit fx2tab | awk '{ print "parHaw5_"$0 }' | seqkit tab2fx > Parhyale_hawaiensis-families.prefix.fa
 ## take fasta, put header and sequence on one tab separated line, print "parHaw5_" and all columns, covert tab to fasta file
 ```
+Also see: 
+
 ### if else and pattern matching
 ```
 if [[ "$GTDBTK_DATA_PATH" =~ "/uoa/scratch/shared/Soil_Microbiology_Group/Training/Metagenomics/databases/GTDB-Tk_r220" ]] && [[ "$GTDB_DATA_PATH" =~ "/uoa/scratch/shared/Soil_Microbiology_Group/Training/Metagenomics/databases/GTDB-Tk_r220" ]]; then
