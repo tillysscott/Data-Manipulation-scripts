@@ -94,6 +94,33 @@ fi
 ```
 This tests if the strings GTDBTK_DATA_PATH and GTDB_DATA_PATH (`&&`) exactly match the regrex pattern (path to GTDB-Tk_r220 in this case). More info on pattern matching is here: https://www.baeldung.com/linux/regex-inside-if-clause
 
+### Use three variables to grep rows into files
+Used in bas_genes.sh to get the positions of the BAS genes predicted.  
+  
+`for tag in $(cat genes.txt); do cat ../$tag.filtered_hits.faa | grep "^>" | awk '{print $1}' | sed 's/>//g' > $tag.filtered_hits.txt; done`  
+-  This extracts the headers of faa files into a list, one per gene (e.g. adc), in the format 325603E__CHOJCPMP_00215 (ID_geneID)
+  
+```
+for tag in $(cat genes.txt) 
+do 
+    while IFS= read -r line; do
+         indiv="${line%%__*}"
+         gene="${line##*__}" 
+         
+         grep "${gene}" ../../../Prokka/${indiv}_prokka1.14.6/${indiv}_*.gff | awk -F '\t' -v NUM=$indiv -v TAG=$tag -v OFS='\t' '{print $0, NUM, TAG}' >> $tag.filtered_hits.gff 
+    done < $tag.filtered_hits.txt
+done
+```
+Loop through the 5 gene names (e.g. adc) and do;  
+`while IFS= read -r line; do` This means  
+- `while` → repeat for each line in the input file
+- `IFS=` → sets the Internal Field Separator to empty which prevents trimming of leading/trailing whitespace
+- `read -r line` → reads one line at a time into a variable called line. `-r` avoids interpreting backslashes (\) as escape characters
+Then extract the individual ID: `indiv="${line%%__*}"`. `%%` → remove the longest match from the end (deals with multiple sets of underscrores). `__*` → means “double underscore + anything after it". This line therefore removes "__CHOJCPMP_00215", keeping "325603E".  
+Then extract the Prokka gene ID: `gene="${line##*__}"`. `##` remove the longest match from the start. `*__` means "double underscore and anything before it".  
+And grep the gene ID in the individual's Prokka gff, placing it in a new gff, placing it in a new gff alongside the individual ID and gene name (e.g. adc).  
+Whilst performing the "while" statement, use the individualID__gene_ID lines in filtered_hits.txt.  
+Done.   
 
 ## Grep
 ### separate TE library into known and unknown libraries
