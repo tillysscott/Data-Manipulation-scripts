@@ -183,11 +183,26 @@ Run a for loop that runs through sample numbers, use to print the table with the
 `-v` sets the variable, in this case, `$num`, which was inherited from the for loop.  
 `$0` prints the whole table.  
 ```
-for num in {325588..325617}
+for num in {1..20}
 do
 	grep "transposase" Prokka/${num}E_prokka1.14.6/${num}E_*.gff | awk -F '\t' -v NUM=$num '{print NUM, $0}' >> Prokka/transposase_grep.tsv
 done
 ```
+### Perform pattern matching
+List true/false based on the presence of "circular=true" in fasta header lines for multiple samples  
+```
+$ for num in {01..20}; do circ=$(grep "^>" ${num}_*.fasta | awk '{print ($0 ~ /circular=true/) ? "true" : "false"}' | paste -sd " "); echo $num $circ; done
+01 false
+02 true true
+03 false false false true false
+```
+- `for num in {01..20}` set up a for loop for sequential numbers
+- `circ=$(*)` create a variable based on a sh expression
+- `grep ">" ${num}_*.fasta` get fasta header lines
+- `awk '{print ($0 ~ /circular=true/) ? "true" : "false"}'` Using all of the line, if that line contains the pattern (circular=true) print "true", else print "false"
+- `paste -sd " "` serialise into one line (`-s`) and use space as delimiter (`-d " "`)
+- `echo $num $circ` print the number and the true/false pattern
+
 ## Moving files
 ```
 # Compress the directory/data
