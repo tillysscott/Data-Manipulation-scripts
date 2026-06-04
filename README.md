@@ -120,7 +120,23 @@ Then extract the individual ID: `indiv="${line%%__*}"`. `%%` → remove the long
 Then extract the Prokka gene ID: `gene="${line##*__}"`. `##` remove the longest match from the start. `*__` means "double underscore and anything before it".  
 And grep the gene ID in the individual's Prokka gff, placing it in a new gff, placing it in a new gff alongside the individual ID and gene name (e.g. adc).  
 Whilst performing the "while" statement, use the individualID__gene_ID lines in filtered_hits.txt.  
-Done.   
+Done.
+
+### If statements
+```
+## Set up dictionary of taxid's
+if [ $num -ge 1 ] && [ $num -le 5 ]; then
+        taxid="39491"
+        echo species is Agathobacter rectalis
+elif [ $num -eq 6 ]; then
+        taxid="2049044"
+        echo species is Erysipelotrichaceae bacterium
+else
+        echo "The species of the sample is unknown"
+fi
+```
+If the number is greater than or equal to (`-ge`) 1 AND less than or equal to (`-le`) 5, then taxid is set and "species is Agathobacter rectalis" is printed to the terminal. Else and if (`elif`) the number equals (`-eq`) 6 then the taxid is set and "species is Erysipelotrichaceae bacterium" is printed to the terminal. If none of the statements are satisfied, "The species of the sample is unknown" is printed to the terminal. Finish (`fi`).  
+NOTE: the spaces in the square brackets are important. One is needed at both end: `[ $num -ge 1 ]`  
 
 ## Grep
 ### separate TE library into known and unknown libraries
