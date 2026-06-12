@@ -43,6 +43,8 @@ $ change.this.path
 sed 's/\//\t/g' test.txt # '\t' is read a tab
 $ change  this    path
 ```
+To only make a change within fasta header lines that start with `>` : `sed '/^>/ s/string_to_remove/replacement_string/g'` 
+  
 ### Cut a string at the first instance of an underscore
 `cut -d_ -f1`  
 For example:  
