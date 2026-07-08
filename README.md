@@ -9,6 +9,7 @@ Used in rainbow_taskarray.sh to randomly select four individuals per trench, and
 ls $SLURM_ARRAY_TASK_ID/*_1.1.fq.gz | shuf -n 4 | paste -s -d '~' | sed 's/~/ -1 /g' > trench$SLURM_ARRAY_TASK_ID.forward.txt
 # list forward reads in folder 1, shuffle and randomly choose 4, paste in serially (onto one line ; -s) and use '~' as delimiter, using sed replace '~' with -1 globally, generating the list format needed for job submission
 ```
+To randomly subsample reads: `seqtk sample -s53 SRR36569707.fastq 0.1 > SRR36569707_subsampled.fastq`. `-s` is the random seed, use the same number for paired reads. `0.1` is the fraction.  
 ### Counting
 Options  
 ```
