@@ -101,7 +101,7 @@ This tests if the strings GTDBTK_DATA_PATH and GTDB_DATA_PATH (`&&`) exactly mat
 Used in bas_genes.sh to get the positions of the BAS genes predicted.  
   
 `for tag in $(cat genes.txt); do cat ../$tag.filtered_hits.faa | grep "^>" | awk '{print $1}' | sed 's/>//g' > $tag.filtered_hits.txt; done`  
--  This extracts the headers of faa files into a list, one per gene (e.g. adc), in the format 325603E__CHOJCPMP_00215 (ID_geneID)
+-  This extracts the headers of faa files into a list, one per gene (e.g. adc), in the format 603E__CHOJCPMP_00215 (ID_geneID)
   
 ```
 for tag in $(cat genes.txt) 
@@ -119,7 +119,7 @@ Loop through the 5 gene names (e.g. adc) and do;
 - `while` → repeat for each line in the input file
 - `IFS=` → sets the Internal Field Separator to empty which prevents trimming of leading/trailing whitespace
 - `read -r line` → reads one line at a time into a variable called line. `-r` avoids interpreting backslashes (\) as escape characters
-Then extract the individual ID: `indiv="${line%%__*}"`. `%%` → remove the longest match from the end (deals with multiple sets of underscrores). `__*` → means “double underscore + anything after it". This line therefore removes "__CHOJCPMP_00215", keeping "325603E".  
+Then extract the individual ID: `indiv="${line%%__*}"`. `%%` → remove the longest match from the end (deals with multiple sets of underscrores). `__*` → means “double underscore + anything after it". This line therefore removes "__CHOJCPMP_00215", keeping "603E".  
 Then extract the Prokka gene ID: `gene="${line##*__}"`. `##` remove the longest match from the start. `*__` means "double underscore and anything before it".  
 And grep the gene ID in the individual's Prokka gff, placing it in a new gff, placing it in a new gff alongside the individual ID and gene name (e.g. adc).  
 Whilst performing the "while" statement, use the individualID__gene_ID lines in filtered_hits.txt.  
@@ -239,10 +239,10 @@ tar -xvzf data.tar.gz
 - Navigate to the directory you want to transfer to or from  
 - On the command line do: 
 ```
-smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\CGEBM\Bioinformatics Unit\CGEBM Projects Bfx\<any project folder> 
+smbclient '\\uoa.abdn.ac.uk\global' -D 'path\to\<any project folder>'
 ```
-Example: `smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\CGEBM\Bioinformatics Unit\CGEBM Projects Bfx\CGEBMP424A Stefan Marika Targetted RNAseq Nanopore Xenopus tropicalis\Ongoing\' `
-- Note: It doesn't have to be just CLSM\CGEBM etc, it can be any folder in the drive that YOU HAVE ACCESS TO
+Example: `smbclient '\\uoa.abdn.ac.uk\global' -D 'CLSM\Ongoing\' `
+- Note: It doesn't have to be just CLSM\etc, it can be any folder in the drive that YOU HAVE ACCESS TO
 - Enter your password - this would be your password for your university email
 - Once entered, you will now be in the team drive
 - Next run the follow commands:
